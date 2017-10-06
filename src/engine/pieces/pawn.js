@@ -14,11 +14,9 @@ export default class Pawn extends Piece {
             if (currentSquare.row === 1){
                 availableMoves = this.addMove(availableMoves, currentSquare, 1, 0);
                 availableMoves = this.addMove(availableMoves, currentSquare, 2, 0);
-                return availableMoves;
             }
             else {
                 availableMoves = this.addMove(availableMoves, currentSquare, 1, 0);
-                return availableMoves;
             }
 
         }
@@ -26,16 +24,17 @@ export default class Pawn extends Piece {
             if (currentSquare.row === 6){
                 availableMoves = this.addMove(availableMoves, currentSquare, -1, 0);
                 availableMoves = this.addMove(availableMoves, currentSquare, -2, 0);
-                return availableMoves;
             }
             else {
                 availableMoves = this.addMove(availableMoves, currentSquare, -1, 0);
-                return availableMoves;
             }
-
         }
-        else {
-            console.log('Not a valid colour.');
+        if (board.getPiece(availableMoves[0])){
+            availableMoves = [];
         }
+        else if (availableMoves.length === 2 && board.getPiece(availableMoves[1])){
+            availableMoves = availableMoves[0];
+        }
+        return availableMoves;
     }
 }
