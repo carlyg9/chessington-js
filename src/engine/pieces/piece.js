@@ -52,26 +52,31 @@ export default class Piece {
 
     addAllDiagonalMoves(board, availableMoves){
         let currentSquare = board.findPiece(this);
+        const numArray = [1,2,3,4,5,6];
         let i = 1;
-        while (currentSquare.row + i < 8 && currentSquare.col + i < 8){
-            availableMoves = this.addMove(availableMoves, currentSquare, i, i);
-            i++;
+        while (!board.getPiece(Square.at(currentSquare.row + i, currentSquare.col + i)) && numArray.includes(currentSquare.row + i) && numArray.includes(currentSquare.col + i)) {
+            availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col + i));
+            i++;   
         }
+        availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col + i));
         i = 1;
-        while (currentSquare.row + i < 8 && currentSquare.col - i > -1){
-            availableMoves = this.addMove(availableMoves, currentSquare, i, -i);
-            i++;
+        while (!board.getPiece(Square.at(currentSquare.row + i, currentSquare.col - i)) && numArray.includes(currentSquare.row + i) && numArray.includes(currentSquare.col - i)) {
+            availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col - i));
+            i++;   
         }
+        availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col - i));
         i = 1;
-        while (currentSquare.row - i > -1 && currentSquare.col - i > -1){
-            availableMoves = this.addMove(availableMoves, currentSquare, -i, -i);
-            i++;
+        while (!board.getPiece(Square.at(currentSquare.row - i, currentSquare.col - i)) && numArray.includes(currentSquare.row - i) && numArray.includes(currentSquare.col - i)) {
+            availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col - i));
+            i++;   
         }
+        availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col - i));
         i = 1;
-        while (currentSquare.row - i > -1 && currentSquare.col + i < 8){
-            availableMoves = this.addMove(availableMoves, currentSquare, -i, i);
-            i++;
+        while (!board.getPiece(Square.at(currentSquare.row - i, currentSquare.col + i)) && numArray.includes(currentSquare.row - i) && numArray.includes(currentSquare.col + i)) {
+            availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col + i));
+            i++;   
         }
+        availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col + i));
         return availableMoves;
     }
 }
