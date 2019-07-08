@@ -20,12 +20,12 @@ export default class Piece {
     }
 
     addAllLateralMoves(board, availableMoves){
-        let currentLocation = board.findPiece(this);
+        let currentSquare = board.findPiece(this);
         for (let i= 0; i<8; i++){
-            availableMoves.push(Square.at(currentLocation.row, i));
-            availableMoves.push(Square.at(i, currentLocation.col));
+            availableMoves.push(Square.at(currentSquare.row, i));
+            availableMoves.push(Square.at(i, currentSquare.col));
         }
-        availableMoves = availableMoves.filter( (square) => !square.equals(currentLocation));
+        availableMoves = availableMoves.filter( (square) => !square.equals(currentSquare));
         return availableMoves;
     }
 

@@ -6,6 +6,15 @@ export default class King extends Piece {
     }
 
     getAvailableMoves(board) {
-        return new Array(0);
+        let availableMoves = [];
+        let currentSquare = board.findPiece(this);
+        const arrayPlusMinus = [1, -1, 0];
+        for (let i of arrayPlusMinus){
+            for (let j of arrayPlusMinus){
+                availableMoves = this.addMove(availableMoves, currentSquare, i, j);
+            }
+        }
+        availableMoves = availableMoves.filter( (square) => !square.equals(currentSquare));
+        return availableMoves;
     }
 }
