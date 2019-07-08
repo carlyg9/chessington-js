@@ -9,27 +9,27 @@ export default class Pawn extends Piece {
 
     getAvailableMoves(board) {
         let availableMoves = [];
-        let currentLocation = board.findPiece(this);
+        let currentSquare = board.findPiece(this);
         if (this.player === Player.WHITE){
-            if (currentLocation.row === 1){
-                availableMoves.push(Square.at((currentLocation.row +1), currentLocation.col));
-                availableMoves.push(Square.at((currentLocation.row +2), currentLocation.col));
+            if (currentSquare.row === 1){
+                availableMoves = this.availableMovesPusher(availableMoves, currentSquare, 1, 0);
+                availableMoves = this.availableMovesPusher(availableMoves, currentSquare, 2, 0);
                 return availableMoves;
             }
             else {
-                availableMoves.push(Square.at((currentLocation.row +1), currentLocation.col));
+                availableMoves = this.availableMovesPusher(availableMoves, currentSquare, 1, 0);
                 return availableMoves;
             }
 
         }
         else if (this.player === Player.BLACK){
-            if (currentLocation.row === 6){
-                availableMoves.push(Square.at((currentLocation.row -1), currentLocation.col));
-                availableMoves.push(Square.at((currentLocation.row -2), currentLocation.col));
+            if (currentSquare.row === 6){
+                availableMoves = this.availableMovesPusher(availableMoves, currentSquare, -1, 0);
+                availableMoves = this.availableMovesPusher(availableMoves, currentSquare, -2, 0);
                 return availableMoves;
             }
             else {
-                availableMoves.push(Square.at((currentLocation.row -1), currentLocation.col));
+                availableMoves = this.availableMovesPusher(availableMoves, currentSquare, -1, 0);
                 return availableMoves;
             }
 

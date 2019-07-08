@@ -1,3 +1,5 @@
+import Square from '../square.js'
+
 export default class Piece {
     constructor(player) {
         this.player = player;
@@ -10,5 +12,10 @@ export default class Piece {
     moveTo(board, newSquare) {
         const currentSquare = board.findPiece(this);
         board.movePiece(currentSquare, newSquare);
+    }
+
+    availableMovesPusher(availableMoves, currentSquare, rowMove, colMove){
+        availableMoves.push(Square.at((currentSquare.row + rowMove), (currentSquare.col + colMove)));
+        return availableMoves
     }
 }
