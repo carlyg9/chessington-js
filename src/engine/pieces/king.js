@@ -15,6 +15,13 @@ export default class King extends Piece {
             }
         }
         availableMoves = availableMoves.filter( (square) => !square.equals(currentSquare));
+        let coordArray = [];
+        for (let i = 0; i<8; i++){
+            for (let j = 0; j<8; j++){
+                coordArray.push([i,j]);
+            }
+        }
+        availableMoves = availableMoves.filter( (square) => Math.max(square.row, square.col) <8 && Math.min(square.row, square.col)>-1)
         return availableMoves;
     }
 }

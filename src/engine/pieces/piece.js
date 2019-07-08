@@ -27,25 +27,25 @@ export default class Piece {
             availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col));
             i++;   
         }
-        availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col));
+        if (currentSquare.row + i < 8) {availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col))};
         i = 1;
         while (!board.getPiece(Square.at(currentSquare.row - i, currentSquare.col)) && numArray.includes(currentSquare.row - i) ) {
             availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col));
             i++;   
         }
-        availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col));
+        if (currentSquare.row - i > -1) {availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col))};
         i = 1;
         while (!board.getPiece(Square.at(currentSquare.row, currentSquare.col + i)) && numArray.includes(currentSquare.col + i) ) {
             availableMoves.push(Square.at(currentSquare.row, currentSquare.col + i));
             i++;   
         }
-        availableMoves.push(Square.at(currentSquare.row, currentSquare.col + i));
+        if (currentSquare.col + i < 8) {availableMoves.push(Square.at(currentSquare.row, currentSquare.col + i))};
         i = 1;
         while (!board.getPiece(Square.at(currentSquare.row, currentSquare.col - i)) && numArray.includes(currentSquare.col -i) ) {
             availableMoves.push(Square.at(currentSquare.row, currentSquare.col - i));
             i++;
         }
-        availableMoves.push(Square.at(currentSquare.row, currentSquare.col - i));
+        if (currentSquare.col - i > -1) {availableMoves.push(Square.at(currentSquare.row, currentSquare.col - i))};
 
         return availableMoves;
     }
@@ -58,25 +58,25 @@ export default class Piece {
             availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col + i));
             i++;   
         }
-        availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col + i));
+        if (currentSquare.row + i < 8 && currentSquare.col + i < 8) {availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col + i))};
         i = 1;
         while (!board.getPiece(Square.at(currentSquare.row + i, currentSquare.col - i)) && numArray.includes(currentSquare.row + i) && numArray.includes(currentSquare.col - i)) {
             availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col - i));
             i++;   
         }
-        availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col - i));
+        if (currentSquare.row + i < 8 && currentSquare.col - i > -1) {availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col - i))};
         i = 1;
         while (!board.getPiece(Square.at(currentSquare.row - i, currentSquare.col - i)) && numArray.includes(currentSquare.row - i) && numArray.includes(currentSquare.col - i)) {
             availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col - i));
             i++;   
         }
-        availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col - i));
+        if (currentSquare.row - i > -1 && currentSquare.col - i > -1) {availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col - i))};
         i = 1;
         while (!board.getPiece(Square.at(currentSquare.row - i, currentSquare.col + i)) && numArray.includes(currentSquare.row - i) && numArray.includes(currentSquare.col + i)) {
             availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col + i));
             i++;   
         }
-        availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col + i));
+        if (currentSquare.row - i > -1 && currentSquare.col +i < 8) {availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col + i))};
         return availableMoves;
     }
 }

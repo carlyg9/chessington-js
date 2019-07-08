@@ -15,6 +15,7 @@ export default class Knight extends Piece {
                 availableMoves = this.addMove(availableMoves, currentSquare, i*2, j*1);
             }
         }
+        availableMoves = availableMoves.filter( (square) => Math.max(square.row, square.col) <8 && Math.min(square.row, square.col)>-1)
         return availableMoves;
     }
 }
