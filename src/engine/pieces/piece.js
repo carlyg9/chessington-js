@@ -21,11 +21,32 @@ export default class Piece {
 
     addAllLateralMoves(board, availableMoves){
         let currentSquare = board.findPiece(this);
-        for (let i= 0; i<8; i++){
-            availableMoves.push(Square.at(currentSquare.row, i));
-            availableMoves.push(Square.at(i, currentSquare.col));
+        const numArray = [1,2,3,4,5,6];
+        let i = 1;
+        while (!board.getPiece(Square.at(currentSquare.row + i, currentSquare.col)) && numArray.includes(currentSquare.row + i) ) {
+            availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col));
+            i++;   
         }
-        availableMoves = availableMoves.filter( (square) => !square.equals(currentSquare));
+        availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col));
+        i = 1;
+        while (!board.getPiece(Square.at(currentSquare.row - i, currentSquare.col)) && numArray.includes(currentSquare.row - i) ) {
+            availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col));
+            i++;   
+        }
+        availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col));
+        i = 1;
+        while (!board.getPiece(Square.at(currentSquare.row, currentSquare.col + i)) && numArray.includes(currentSquare.col + i) ) {
+            availableMoves.push(Square.at(currentSquare.row, currentSquare.col + i));
+            i++;   
+        }
+        availableMoves.push(Square.at(currentSquare.row, currentSquare.col + i));
+        i = 1;
+        while (!board.getPiece(Square.at(currentSquare.row, currentSquare.col - i)) && numArray.includes(currentSquare.col -i) ) {
+            availableMoves.push(Square.at(currentSquare.row, currentSquare.col - i));
+            i++;
+        }
+        availableMoves.push(Square.at(currentSquare.row, currentSquare.col - i));
+
         return availableMoves;
     }
 
