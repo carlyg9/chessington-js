@@ -14,7 +14,7 @@ export default class Piece {
         board.movePiece(currentSquare, newSquare);
     }
 
-    availableMovesPusher(availableMoves, currentSquare, rowMove, colMove){
+    addMove(availableMoves, currentSquare, rowMove, colMove){
         availableMoves.push(Square.at((currentSquare.row + rowMove), (currentSquare.col + colMove)));
         return availableMoves
     }
