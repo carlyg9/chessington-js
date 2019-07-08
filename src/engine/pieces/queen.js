@@ -1,4 +1,5 @@
 import Piece from './piece';
+import Square from '../square.js'
 
 export default class Queen extends Piece {
     constructor(player) {
@@ -6,6 +7,9 @@ export default class Queen extends Piece {
     }
 
     getAvailableMoves(board) {
-        return new Array(0);
+        let availableMoves = [];
+        availableMoves = this.addAllDiagonalMoves(board, availableMoves);
+        availableMoves = this.addAllLateralMoves(board, availableMoves);
+        return availableMoves;
     }
 }
