@@ -1,4 +1,5 @@
 import Piece from './piece';
+import King from './king';
 
 export default class Bishop extends Piece {
     constructor(player) {
@@ -8,6 +9,7 @@ export default class Bishop extends Piece {
     getAvailableMoves(board) {
         let availableMoves = [];
         availableMoves = this.addAllDiagonalMoves(board, availableMoves);
-        return availableMoves
+        availableMoves = availableMoves.filter((move) => !(board.getPiece(move) instanceof King));
+        return availableMoves;
     }
 }

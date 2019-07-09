@@ -74,25 +74,39 @@ export default class Piece {
             availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col + i));
             i++;   
         }
-        if (currentSquare.row + i < 8 && currentSquare.col + i < 8) {availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col + i))};
+        let truthArray = [currentSquare.row + i < 8 && currentSquare.col + i < 8,  
+            !board.getPiece(Square.at((currentSquare.row + i), currentSquare.col + i)) || !(board.getPiece(Square.at((currentSquare.row + i), currentSquare.col + i)).player=== this.player)];
+        if (truthArray[0] && truthArray[1]){availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col + i))};
+
+
         i = 1;
         while (!board.getPiece(Square.at(currentSquare.row + i, currentSquare.col - i)) && numArray.includes(currentSquare.row + i) && numArray.includes(currentSquare.col - i)) {
             availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col - i));
             i++;   
         }
-        if (currentSquare.row + i < 8 && currentSquare.col - i > -1) {availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col - i))};
-        i = 1;
+        truthArray = [currentSquare.row + i < 8 && currentSquare.col - i > -1,  
+            !board.getPiece(Square.at((currentSquare.row + i), currentSquare.col - i)) || !(board.getPiece(Square.at((currentSquare.row + i), currentSquare.col - i)).player=== this.player)];
+        if (truthArray[0] && truthArray[1]){availableMoves.push(Square.at(currentSquare.row + i, currentSquare.col - i))};
+        
+        
+        i= 1;
         while (!board.getPiece(Square.at(currentSquare.row - i, currentSquare.col - i)) && numArray.includes(currentSquare.row - i) && numArray.includes(currentSquare.col - i)) {
             availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col - i));
             i++;   
         }
-        if (currentSquare.row - i > -1 && currentSquare.col - i > -1) {availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col - i))};
+        truthArray = [currentSquare.row - i > -1 && currentSquare.col - i > -1,  
+            !board.getPiece(Square.at((currentSquare.row - i), currentSquare.col - i)) || !(board.getPiece(Square.at((currentSquare.row - i), currentSquare.col - i)).player=== this.player)];
+        if (truthArray[0] && truthArray[1]){availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col - i))};
+        
+        
         i = 1;
         while (!board.getPiece(Square.at(currentSquare.row - i, currentSquare.col + i)) && numArray.includes(currentSquare.row - i) && numArray.includes(currentSquare.col + i)) {
             availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col + i));
             i++;   
         }
-        if (currentSquare.row - i > -1 && currentSquare.col +i < 8) {availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col + i))};
+        truthArray = [currentSquare.row - i > -1 && currentSquare.col + i < 8,  
+            !board.getPiece(Square.at((currentSquare.row - i), currentSquare.col + i)) || !(board.getPiece(Square.at((currentSquare.row - i), currentSquare.col + i)).player=== this.player)];
+        if (truthArray[0] && truthArray[1]){availableMoves.push(Square.at(currentSquare.row - i, currentSquare.col + i))};
         return availableMoves;
     }
 
