@@ -1,9 +1,12 @@
 import Piece from './piece';
+import King from './king.js'
 
 export default class Knight extends Piece {
     constructor(player) {
         super(player);
     }
+
+
 
     getAvailableMoves(board) {
         let availableMoves = [];
@@ -16,6 +19,22 @@ export default class Knight extends Piece {
             }
         }
         availableMoves = availableMoves.filter( (square) => Math.max(square.row, square.col) <8 && Math.min(square.row, square.col)>-1)
+        availableMoves = availableMoves.filter( (square) => {
+            const possiblePiece = board.getPiece(square);
+            if (!possiblePiece){
+                return true
+            }
+            else if (possiblePiece instanceof King){
+                return false
+            }
+            else if (!(possiblePiece.player === this.player)){
+                return true
+            }
+            else {
+                return false
+            }
+        })
         return availableMoves;
     }
+
 }
