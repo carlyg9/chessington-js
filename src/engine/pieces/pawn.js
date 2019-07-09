@@ -34,6 +34,7 @@ export default class Pawn extends Piece {
             else {
                 availableMoves = this.addMove(availableMoves, currentSquare, -1, 0);
             }
+
         }
         if (board.getPiece(availableMoves[0])){
             availableMoves = [];
@@ -41,6 +42,8 @@ export default class Pawn extends Piece {
         else if (availableMoves.length === 2 && board.getPiece(availableMoves[1])){
             availableMoves = [availableMoves[0]];
         }
+        //console.log(currentSquare);
+        //console.log(availableMoves);
         return availableMoves;
     }
 }
