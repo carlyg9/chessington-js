@@ -6,10 +6,7 @@ export default class Pawn extends Piece {
     constructor(player) {
         super(player);
     }
-
-    getAvailableMoves(board) {
-        let availableMoves = [];
-        let currentSquare = board.findPiece(this);
+    whitePawnMovement(availableMoves, currentSquare){
         if (this.player === Player.WHITE){
             if (currentSquare.row === 1){
                 availableMoves = this.addMove(availableMoves, currentSquare, 1, 0);
@@ -23,7 +20,11 @@ export default class Pawn extends Piece {
             }
 
         }
-        else if (this.player === Player.BLACK){
+        return availableMoves
+    }
+
+    blackPawnMovement(availableMoves, currentSquare){
+        if (this.player === Player.BLACK){
             if (currentSquare.row === 6){
                 availableMoves = this.addMove(availableMoves, currentSquare, -1, 0);
                 availableMoves = this.addMove(availableMoves, currentSquare, -2, 0);
@@ -36,14 +37,22 @@ export default class Pawn extends Piece {
             }
 
         }
-        if (board.getPiece(availableMoves[0])){
+        return availableMoves
+    }
+
+    getAvailableMoves(board) {
+        let availableMoves = [];
+        let currentSquare = board.findPiece(this);
+        availableMoves = this.whitePawnMovement(availableMoves, currentSquare);
+        availableMoves = this.blackPawnMovement(availableMoves, currentSquare);
+        if (availableMoves.length > 0 && board.getPiece(availableMoves[0])){
             availableMoves = [];
         }
         else if (availableMoves.length === 2 && board.getPiece(availableMoves[1])){
             availableMoves = [availableMoves[0]];
         }
-        //console.log(currentSquare);
-        //console.log(availableMoves);
         return availableMoves;
     }
+
+
 }

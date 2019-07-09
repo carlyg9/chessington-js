@@ -110,6 +110,24 @@ export default class Piece {
         return availableMoves;
     }
 
+    filterPieces(board, square) {
+        if (Math.max(square.row, square.col) <8 && Math.min(square.row, square.col)>-1){
+            const possiblePiece = board.getPiece(square);
+            if (!possiblePiece){
+                return true
+            }
+            else if (!(possiblePiece.player === this.player)){
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        else{
+            return false
+        }
+    }
+
     
 }
 

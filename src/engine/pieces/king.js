@@ -21,7 +21,8 @@ export default class King extends Piece {
                 coordArray.push([i,j]);
             }
         }
-        availableMoves = availableMoves.filter( (square) => Math.max(square.row, square.col) <8 && Math.min(square.row, square.col)>-1)
+        availableMoves = availableMoves.filter( (square) => this.filterPieces(board, square));
+        availableMoves = availableMoves.filter((move) => !(board.getPiece(move) instanceof King))
         return availableMoves;
     }
 }

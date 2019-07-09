@@ -18,22 +18,8 @@ export default class Knight extends Piece {
                 availableMoves = this.addMove(availableMoves, currentSquare, i*2, j*1);
             }
         }
-        availableMoves = availableMoves.filter( (square) => Math.max(square.row, square.col) <8 && Math.min(square.row, square.col)>-1)
-        availableMoves = availableMoves.filter( (square) => {
-            const possiblePiece = board.getPiece(square);
-            if (!possiblePiece){
-                return true
-            }
-            else if (possiblePiece instanceof King){
-                return false
-            }
-            else if (!(possiblePiece.player === this.player)){
-                return true
-            }
-            else {
-                return false
-            }
-        })
+        availableMoves = availableMoves.filter( (square) =>  this.filterPieces(board, square));
+        availableMoves = availableMoves.filter((move) => !(board.getPiece(move) instanceof King))
         return availableMoves;
     }
 
